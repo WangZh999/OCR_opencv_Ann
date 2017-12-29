@@ -16,25 +16,25 @@ int main()
 	GetData("E:\\OCR\\Train", train_data_mat, labels_mat);*/
 
 
-	//train("E:\\OCR\\TrainDataSet"); //—µ¡∑
+	train("E:\\OCR\\TrainDataSet"); //—µ¡∑
 
 
 
 	//µ•∑˘Õº∆¨≤‚ ‘
-	char filename[100];
-	ANN_Wz ann = ANN_Wz();
-	int result;
-	while (1) {
-		gets_s(filename);
-		Mat img = imread(filename, 0);
-		if (NULL==img.data)
-		{
-			cout << "NULL" << endl;
-			continue;
-		}
-		result = ann.predict(img);
-		cout << result << endl;
-	}
+	//char filename[100];
+	//ANN_Wz ann = ANN_Wz();
+	//int result;
+	//while (1) {
+	//	gets_s(filename);
+	//	Mat img = imread(filename, 0);
+	//	if (NULL==img.data)
+	//	{
+	//		cout << "NULL" << endl;
+	//		continue;
+	//	}
+	//	result = ann.predict(img);
+	//	cout << result << endl;
+	//}
 
 
 	/*float rate;
