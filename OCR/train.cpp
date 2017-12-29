@@ -84,6 +84,9 @@ float test(string path)
 							{								
 								fileName.assign(subDir).append("\\").append(fileinfo.name); //文件绝对路径+文件名
 								Mat temp_img = imread(fileName, 0);
+								if (NULL==temp_img.data){
+									continue;
+								}
 								result = _ann.predict(temp_img);	//根据训练好的神经网络预测结果
 
 								total_num++;

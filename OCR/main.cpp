@@ -27,10 +27,15 @@ int main()
 	while (1) {
 		gets_s(filename);
 		Mat img = imread(filename, 0);
+		if (NULL==img.data)
+		{
+			cout << "NULL" << endl;
+			continue;
+		}
 		result = ann.predict(img);
 		cout << result << endl;
 	}
-	
+
 
 	/*float rate;
 	rate=test("E:\\OCR\\TestDataSet");*/

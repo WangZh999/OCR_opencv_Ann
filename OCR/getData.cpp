@@ -56,18 +56,12 @@ bool GetData(string path, Mat &trainData, Mat &labelData)
 							{
 								fileName.assign(subDir).append("\\").append(fileinfo.name); //文件绝对路径+文件名
 								Mat temp_img = imread(fileName, 0);
-								Mat temp_feature = getFeature(temp_img); //获取图像特征向量
-
-								trainData.push_back(temp_feature);
-								labelData.push_back(temp_classNum);
-
-								/*cout << "file:     " << fileinfo.name << endl;
-								
-								Mat temp = imread(fileName.c_str());
-								imshow("temp", temp);
-
-								waitKey();*/
-
+								if (NULL != temp_img.data)
+								{
+									Mat temp_feature = getFeature(temp_img); //获取图像特征向量
+									trainData.push_back(temp_feature);
+									labelData.push_back(temp_classNum);
+								}
 							}
 						} while (_findnext(hFile2, &fileinfo) == 0);  //寻找下一个文件
 					}
