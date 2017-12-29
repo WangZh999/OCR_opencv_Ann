@@ -1,5 +1,6 @@
 /x64/
 /.vs/
+/OCR/x64/
 
 # Prerequisites
 *.d
