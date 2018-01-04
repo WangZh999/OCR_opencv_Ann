@@ -16,10 +16,6 @@ cv::Mat getFeature(Mat raw_img)
 	Rect _rect = getMinRect2(raw_img);
 	Mat roi_img = raw_img(_rect);
 
-	imshow("roi", roi_img);
-
-	waitKey();
-
 	//将图片缩放只指定大小
 	Mat lowData;
 	resize(roi_img, lowData, Size(IMAGE_SIZE, IMAGE_SIZE));
@@ -27,7 +23,23 @@ cv::Mat getFeature(Mat raw_img)
 	//直方图特征
 	Mat hist = getHistogram(lowData);
 
-	return hist;
+	resize(lowData, lowData, Size(4, 4));
+
+	Mat _feature(1, 2 * IMAGE_SIZE + 16, CV_32F);
+
+	for (int i = 0; i < (2 * IMAGE_SIZE); i++)
+	{
+		_feature.at<float>(i) = hist.at<float>(i);
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		unsigned char *ptr = lowData.ptr(i);
+		for (int j = 0; j < 4; j++)
+		{
+			_feature.at<float>(2 * IMAGE_SIZE + i * 4 + j) = (float)ptr[j];
+		}
+	}
+	return _feature;
 }
 
 cv::Rect getMinRect(Mat &img)
